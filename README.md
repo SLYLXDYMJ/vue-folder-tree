@@ -2,7 +2,7 @@
 > VUE 组件 - 文件夹目录结构
 
 ### Demo
-> https://github.com/q-jason/vue-folder-tree/docs/
+> https://q-jason.github.io/vue-folder-tree/docs/
 
 ### 安装
 ```bash
