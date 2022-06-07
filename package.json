@@ -1,6 +1,6 @@
 {
   "name": "vue-folder-tree",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "module": "dist/vue-folder-tree.esm.js",
   "unpkg": "dist/vue-folder-tree.js",
   "author": "q-jason",
