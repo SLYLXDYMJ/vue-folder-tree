@@ -8,6 +8,12 @@
 ```bash
 npm i --save vue-folder-tree
 ```
+```javascript
+import FolderTree from 'vue-folder-tree'
+import 'vue-folder-tree/dist/vue-folder-tree.css'
+
+Vue.use(FolderTree)
+```
 or
 ```html
 
