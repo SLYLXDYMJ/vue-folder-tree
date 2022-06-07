@@ -115,3 +115,30 @@ new Vue({
 - input，v-model
 - update:data，data.sync
 - on-click，点击目录后会通知该事件，参数为点击条目的数据
+
+### prop data 解释
+```javascript
+/**
+ *  文件夹目录数据，用 .sync 语法糖双向绑定，内部会改变 expand 状态
+ *  实现功能只需要 id、parentId、name、children
+ *  parentId 为上一级的 ID，getPath 方法使用
+ *  expand 是否展开子目录
+ *  other 为其他数据，事件中会一并向上传递
+ *  {
+ *    id: Any,
+ *    name: String,
+ *    expand: Boolean
+ *    other: Any,
+ *    children: [
+ *      {
+ *        id: Any,
+ *        name: String,
+ *        parentId: String
+ *        expand: Boolean
+ *        other: Any
+ *        children: [],
+ *      }
+ *    ],
+ *  }
+ **/
+```
