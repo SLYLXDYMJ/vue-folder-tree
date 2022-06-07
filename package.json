@@ -5,7 +5,7 @@
   "unpkg": "dist/vue-folder-tree.js",
   "author": "q-jason",
   "description": "VUE 组件 - 文件夹目录结构",
-  "homepage": "https://github.com/q-jason/vue-folder-tree",
+  "homepage": "https://q-jason.github.io/vue-folder-tree/docs/",
   "repository": {
     "type": "git",
     "url": "https://github.com/q-jason/vue-folder-tree.git"
