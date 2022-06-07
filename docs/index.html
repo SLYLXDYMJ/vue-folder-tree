@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>template-rollup</title>
+  <link rel="stylesheet" href="../dist/vue-folder-tree.css">
+  <style>
+    body {
+      margin: 0;
+    }
+    .root {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      min-height: 400px;
+    }
+    .root > div:first-child {
+      margin-bottom: 15px;
+    }
+    .root > div:last-child {
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="root">
+  <div>
+    {{ path }}
+  </div>
+  <div>
+    <vue-folder-tree
+      ref="folder-tree"
+      v-model="selectedFolderId"
+      :data.sync="folderData"
+      @on-click="clickFolder">
+    </vue-folder-tree>
+  </div>
+</div>
+
+<script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+<script src="../dist/vue-folder-tree.js"></script>
+<script>
+  var TEST_DATA = [
+    {
+      id: '全部收藏',
+      name: '全部收藏',
+      expand: true,
+      children: [
+        {
+          id: '1',
+          name: '第一级',
+          parentId: '全部收藏',
+          expand: false,
+          children: [
+            {
+              id: '1-1',
+              name: '第二级',
+              parentId: '1'
+            }
+          ]
+        },
+        {
+          id: '2',
+          name: '第一级',
+          parentId: '全部收藏',
+          children: [
+            {
+              id: '2-1',
+              name: '第二级',
+              parentId: '2'
+            }
+          ]
+        }
+      ]
+    }
+  ]
+
+  new Vue({
+    data: function () {
+      return {
+        folderData: null,
+        selectedFolderId: null
+      }
+    },
+    methods: {
+      clickFolder: function (folder) {
+        console.log('点击了文件夹：' + folder.name)
+        console.log(folder)
+      }
+    },
+    created: function () {
+      this.folderData = TEST_DATA
+
+      // 如果需要使用 getPath 方法则需要等待 folder-tree 组件渲染后再赋值 value
+      // 否则会报错
+      this.$nextTick(function () {
+        this.selectedFolderId = this.folderData[ 0 ].id
+      })
+    },
+    computed: {
+      path: function () {
+        if (!this.selectedFolderId || !this.$refs[ 'folder-tree' ]) return null
+
+        var result = ''
+        var pathData = this.$refs[ 'folder-tree' ].getPath(this.selectedFolderId)
+
+        pathData.forEach(function (item, i) {
+          result += item.name
+          if (i !== pathData.length - 1) {
+            result += ' > '
+          }
+        })
+
+        return result
+      }
+    }
+  }).$mount('.root')
+</script>
+</body>
+</html>
